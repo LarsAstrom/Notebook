@@ -1,0 +1,13 @@
+1. Bellman Ford
+
+2. Floyd Warshall
+
+3. BFS/DFS?
+
+4. Scheduling
+
+5. Union-Find
+
+6. Knapsack
+
+7. Shortest path problemen från kattis
