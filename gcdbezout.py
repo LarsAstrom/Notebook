@@ -1,3 +1,8 @@
+'''
+Returns gcd for two numbers, or for all numbers in a list.
+Also returns Bezout's identity.
+TODO: Do it iteratively.
+'''
 def gcd(a,b):
     if a < b: return gcd(b,a)
     if b == 0: return a

@@ -1,3 +1,7 @@
+/**
+ * Constructs a Fenwick (Binary Indexed) Tree. It is possible to update bits
+ * in a leaf and to get the sum of all nodes up to i.
+ */
 import java.io.*;
 
 public class fenwicktree{

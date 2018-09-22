@@ -11,3 +11,7 @@
 6. Knapsack
 
 7. Shortest path problemen från kattis
+
+8. Comment mincostmaxflow.py
+
+9. Make GCD, etc iterative 

@@ -1,3 +1,8 @@
+'''
+Implementation of the chineese remainder theorem. 
+The equation is x = a_i mod b_i for a_i in a, b_i in b.
+'''
+
 def gcd(a,b):
     if a < b: return gcd(b,a)
     if b == 0: return a

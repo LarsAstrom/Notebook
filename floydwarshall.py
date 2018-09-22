@@ -1,3 +1,7 @@
+'''
+Finds all distances in the graph given by edg (negative weights might occur)
+edg is a list of (u,v,w) where is an edge from u to v with weight w.
+'''
 inf = 10**15
 def fw(N,edg):
     dist = [[inf]*N for _ in range(N)]

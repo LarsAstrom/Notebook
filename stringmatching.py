@@ -1,4 +1,4 @@
-#z[i] = Length of the longest common prefix of s and s[i:].
+#z[i] = Length of the longest common prefix of s and s[i:], i > 0.
 def zfun(s):
     n = len(s)
     z = [0]*n

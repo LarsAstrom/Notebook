@@ -1,3 +1,7 @@
+'''
+Constructs a fenwicktree of an array. Can update a bit and get the 
+sum up to and including i in the array.
+'''
 def fenwicktree(arr):
     fwtree = [0]*(len(arr)+1)
     for i in range(len(arr)):

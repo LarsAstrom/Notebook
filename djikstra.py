@@ -1,3 +1,8 @@
+'''
+Implementation of djikstras algorithm. Finds the shortest path from a source,
+to all other nodes (non-negative weights).
+adj is a list of adjacency lists and s the source node.
+'''
 from heapq import heappush, heappop
 
 INF = 10**12

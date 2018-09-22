@@ -1,3 +1,8 @@
+'''
+Calculates the distance from a source to all other nodes.
+Run this by putting edgs as a list of tuples (u,v,w) where 
+the edge goes from u to v with weight w (w might be negative). 
+'''
 def bfs(cur):
     vis = [False]*n
     b = [cur]
@@ -23,19 +28,3 @@ def bellmanford(edgs,s):
     for i in range(n):
         if dists[i] > INF/2 and dists[i] != '-Infinity': dists[i] = 'Impossible'
     return dists
-
-INF = 10**20
-n,m,q,s = map(int,raw_input().split())
-while n != 0:
-    edgs = []
-    adj = [[] for _ in range(n)]
-    dists = [INF]*n
-    for _ in range(m):
-        u,v,w = map(int,raw_input().split())
-        edgs.append((u,v,w))
-        adj[u].append(v)
-    dists = bellmanford(edgs,s)
-    for _ in range(q):
-        print dists[int(raw_input())]
-    print
-    n,m,q,s = map(int,raw_input().split())
