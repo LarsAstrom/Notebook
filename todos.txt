@@ -2,14 +2,14 @@
 
 2. Scheduling
 
-3. Knapsack
+3. Comment mincostmaxflow.py
 
-4. Comment mincostmaxflow.py
+4. Make GCD, etc iterative 
 
-5. Make GCD, etc iterative 
+5. Python: Segment tree, lazy segment tree, bipartite graphs, LIS, Josephus problem, area of polygon, pick's theorem, implementations(?!).
 
-6. Python: Segment tree, lazy segment tree, bipartite graphs, LIS, Josephus problem, area of polygon, pick's theorem, implementations(?!).
+6. C++: Everything but segment tree.
 
-7. C++: Everything but segment tree.
+7. Write section 1 about getting solved to AC.
 
-8. Write section 1 about getting solved to AC.
+8. Insert time complexities.
