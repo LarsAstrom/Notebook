@@ -1,13 +1,15 @@
-3. BFS/DFS?
+1. BFS/DFS?
 
-4. Scheduling
+2. Scheduling
 
-5. Union-Find
+3. Knapsack
 
-6. Knapsack
+4. Comment mincostmaxflow.py
 
-7. Shortest path problemen från kattis
+5. Make GCD, etc iterative 
 
-8. Comment mincostmaxflow.py
+6. Python: Segment tree, lazy segment tree, bipartite graphs, LIS, Josephus problem, area of polygon, pick's theorem, implementations(?!).
 
-9. Make GCD, etc iterative 
+7. C++: Everything but segment tree.
+
+8. Write section 1 about getting solved to AC.
