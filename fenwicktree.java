@@ -11,7 +11,8 @@ import java.io.*;
 public class fenwicktree{
     public static int[] fenwicktree(int[] arr){
         int[] ret = new int[arr.length+1];
-        for(int i = 0; i < arr.length; i++) updatebit(ret,arr.length,i,arr[i]);
+        for(int i = 0; i < arr.length; i++) 
+            updatebit(ret,arr.length,i,arr[i]);
         return ret;
     }
 

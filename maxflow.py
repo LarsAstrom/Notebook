@@ -6,6 +6,8 @@ inf is some sufficiently large number (larger than max capacity).
 s and t are the source and sink, respectively.
 n is the number of nodes.
 
+NOTE: DONT FORGET THE BACKWARDS EDGES WHEN CONSTRUCTING THE GRAPH
+
 Time Complexity: O(C*N)
 Space Complexity: O(N^2)
 '''

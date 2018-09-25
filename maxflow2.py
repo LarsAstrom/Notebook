@@ -6,18 +6,18 @@ inf is some sufficiently large number (larger than max capacity).
 s and t are the source and sink, respectively.
 n is the number of nodes.
 
+NOTE: DONT FORGET THE BACKWARDS EDGES WHEN CONSTRUCTING THE GRAPH
+
 Time Complexity: O(log(c)*m^2)
 Space Complexity: O(n^2)
 '''
-def dfs(vis,df,cmf,treshold):
-    cur = df.pop()
+def dfs(vis,cur,cmf,treshold):
     if vis[cur]: return 0
     vis[cur] = True
     if cur == t: return cmf
     for e in edg[cur]:
         if not vis[e] and caps[cur][e] > treshold:
-            df.append(e)
-            a = dfs(vis,df,min(caps[cur][e],cmf),treshold)
+            a = dfs(vis,e,min(caps[cur][e],cmf),treshold)
             if a:
                 caps[cur][e] -= a
                 caps[e][cur] += a
@@ -27,10 +27,10 @@ def dfs(vis,df,cmf,treshold):
 def cap():
     c = 0
     for t in range(30,-1,-1):
-        toAdd = dfs([False]*n,[s],inf,2**t-1)
+        toAdd = dfs([False]*n,s,inf,2**t-1)
         while toAdd: 
             c += toAdd
-            toAdd = dfs([False]*n,[s],inf,2**t-1)
+            toAdd = dfs([False]*n,s,inf,2**t-1)
     return c
 
 #Example of useage.
