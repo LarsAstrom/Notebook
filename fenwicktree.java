@@ -1,6 +1,10 @@
 /**
- * Constructs a Fenwick (Binary Indexed) Tree. It is possible to update bits
- * in a leaf and to get the sum of all nodes up to i.
+ * Constructs a Fenwick (Binary Indexed) Tree. It is possible to 
+ * update bits in a leaf and to get the sum of all nodes up to i.
+ *
+ * Time Complexity: O(NlogN) for construction, O(logN) for update 
+ *                              and querry, where N is len(arr).
+ * Space Complexity: O(N)
  */
 import java.io.*;
 

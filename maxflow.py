@@ -1,11 +1,13 @@
 '''
 This is an algorithm for calculating max-flow. 
-Timecomplexity is O(C*n) [worst cast, expected is quite a lot smaller]
 edg is an adjacency list, where e[i] is a list of all i's neighbors.
 caps is a matrix where caps[i][j] is the current capacity from i to j.
 inf is some sufficiently large number (larger than max capacity).
 s and t are the source and sink, respectively.
 n is the number of nodes.
+
+Time Complexity: O(C*N)
+Space Complexity: O(N^2)
 '''
 def dfs(vis,df,cmf):
     cur = df.pop()
@@ -29,6 +31,7 @@ def cap():
         toAdd = dfs([False]*n,[s],inf)
     return c
 
+#Example of useage.
 inf = 10**15
 n,m,s,t = map(int, raw_input().split())
 edg = [[] for _ in range(n)]

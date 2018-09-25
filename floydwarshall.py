@@ -1,6 +1,10 @@
 '''
-Finds all distances in the graph given by edg (negative weights might occur)
-edg is a list of (u,v,w) where is an edge from u to v with weight w.
+Finds all distances in the graph given by edg (negative weights 
+might occur) edg is a list of (u,v,w) where is an edge from u 
+to v with weight w.
+
+Time Complexity: O(N^3), N is the number of nodes.
+Space Complexity: O(N^2)
 '''
 inf = 10**15
 def fw(N,edg):
@@ -13,7 +17,8 @@ def fw(N,edg):
         for i in range(N):
             for j in range(N):
                 if dist[i][k] < inf and dist[k][j] < inf:
-                    dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+                    dist[i][j] = min(dist[i][j], 
+                            dist[i][k] + dist[k][j])
     return dist
 
 

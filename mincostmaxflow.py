@@ -1,88 +1,94 @@
 '''
-This is an algorithm for calculating max-flow. 
-Timecomplexity is approximately O(log(c)*m^2) [Worst case]. 
-Expected timecomplexity is much lower.
-edg is an adjacency list, where e[i] is a list of all i's neighbors.
-caps is a matrix where caps[i][j] is the current capacity from i to j.
-inf is some sufficiently large number (larger than max capacity).
-s and t are the source and sink, respectively.
-n is the number of nodes.
+Solves the min-cost-max-flow problem. This is finding a flow
+of maximal capacity (or of capacity at most maxf) with a 
+minimal cost. Each edge has a capacity and a cost.
+
+Time Complexity: O(min(N^2*M^2, N*M*F))
+Space Complexity: O(N^2)
+
+This solution is about 2 times slower than java.
 '''
-def dfs(vis,df,cmf,treshold):
-    cur = df.pop()
-    if vis[cur]: return 0
-    vis[cur] = True
-    if cur == t: return cmf
-    for e in edg[cur]:
-        if not vis[e] and caps[cur][e] > treshold:
-            df.append(e)
-            a = dfs(vis,df,min(caps[cur][e],cmf),treshold)
-            if a:
-                caps[cur][e] -= a
-                caps[e][cur] += a
-                return a
-    return 0
 
-def cap():
-    c = 0
-    for t in range(30,-1,-1):
-        toAdd = dfs([False]*n,[s],inf,2**t-1)
-        while toAdd: 
-            c += toAdd
-            toAdd = dfs([False]*n,[s],inf,2**t-1)
-    return c
+#edge = [to, cap, cost, rev, f]
+INF = 10**15
 
-def delnegcyc():
-    dist = [inf]*n
-    prev = [-1]*n
+def createGraph(n):
+    return [[] for _ in range(n)]
+
+def addEdge(graph, fr, to, cap, cost):
+    graph[fr].append([to,cap,cost,len(graph[to]),0])
+    graph[to].append([fr,0,-cost,len(graph[fr])-1,0])
+
+#edge = [to, cap, cost, rev, f]
+def bellmanFord(s):
+    n = len(graph)
+    for i in range(n): dist[i] = INF
     dist[s] = 0
-    for v in range(n):
-        for ne in edg[v]:
-            if caps[v][ne] == 0: continue
-            tempdist = dist[v] + costs[v][ne]
-            if tempdist < dist[ne]:
-                dist[ne] = tempdist
-                prev[ne] = v
-    for v in range(n):
-        for ne in edg[v]:
-            if caps[v][ne] == 0: continue
-            if dist[v] + costs[v][ne] < dist[ne]:
-                cur = prev[v]
-                c = caps[cur][v]
-                while cur != v:
-                    c = min(caps[prev[cur]][cur],c)
-                    cur = prev[cur]
-                cur = prev[v]
-                caps[cur][v] -= c
-                caps[v][cur] += c
-                while cur != v: 
-                    caps[prev[cur]][cur] -= c
-                    caps[cur][prev[cur]] += c
-                    cur = prev[cur]
-                return True
-    return False
+    inqueue = [False]*n
+    curflow[s] = INF
+    q = [0]*n
+    qt = 0
+    q[qt] = s
+    qt += 1
+    qh = 0
+    while (qh-qt)%n != 0:
+        u = q[qh%n]
+        inqueue[u] = False
+        for i in range(len(graph[u])):
+            e = graph[u][i]
+            if(e[4] >= e[1]): continue
+            v = e[0]
+            ndist = dist[u] + e[2]
+            if dist[v] > ndist:
+                dist[v] = ndist
+                prevnode[v] = u
+                prevedge[v] = i
+                curflow[v] = min(curflow[u], e[1]-e[4])
+                if not inqueue[v]:
+                    inqueue[v] = True
+                    q[qt%n] = v
+                    qt += 1
+        qh += 1
 
-inf = 10**15
-n,m,s,t = map(int, raw_input().split())
-edg = [[] for _ in range(n)]
-caps = [[0]*n for _ in range(n)]
-origcaps = [[0]*n for _ in range(n)]
-costs = [[0]*n for _ in range(n)]
-for _ in range(m):
-    u,v,c,w = map(int, raw_input().split())
-    edg[u].append(v)
-    edg[v].append(u)
-    caps[u][v] += c
-    origcaps[u][v] += c
-    costs[u][v] = w
-    costs[v][u] = -w
-mf = cap()
-while delnegcyc():
-    pass
-cst = 0
-for node in range(n):
-    for ne in edg[node]:
-        if origcaps[node][ne]:
-            cst += (origcaps[node][ne]-caps[node][ne])*costs[node][ne]
-            
-print mf,cst
+#edge = [to, cap, cost, rev, f]
+def minCostFlow(s, t, maxf):
+    n = len(graph)
+
+    flow = 0
+    flowCost = 0
+    while flow < maxf:
+        bellmanFord(s)
+        if dist[t] == INF: break
+        df = min(curflow[t], maxf - flow)
+        flow += df
+        v = t
+        while v != s:
+            e = graph[prevnode[v]][prevedge[v]]
+            graph[prevnode[v]][prevedge[v]][4] += df
+            graph[v][e[3]][4] -= df
+            flowCost += df*e[2]
+            v = prevnode[v]
+    return (flow, flowCost)
+
+#Example of useage. MUST USE THE SAME NAMES!
+N,M,S,T = map(int, raw_input().split())
+graph = createGraph(N)
+for i in range(M):
+    U,V,C,W = map(int, raw_input().split())
+    addEdge(graph, U, V, C, W)
+
+dist = [INF]*N
+curflow = [0]*N
+prevedge = [0]*N
+prevnode = [0]*N
+flow, flowCost = minCostFlow(S, T, INF)
+print flow, flowCost
+
+
+
+
+
+
+
+
+

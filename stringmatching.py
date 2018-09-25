@@ -1,3 +1,9 @@
+'''
+Generates the z-function and boarder function for a string s.
+
+Time Complexity: O(len(s))
+Space Complexity: O(len(s))
+'''
 #z[i] = Length of the longest common prefix of s and s[i:], i > 0.
 def zfun(s):
     n = len(s)

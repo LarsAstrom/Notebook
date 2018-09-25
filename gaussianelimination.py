@@ -1,7 +1,12 @@
 from __future__ import division
-#Solves Ax=b. A has size n*n, b has size n*1
-#Returns x if unique solution exists, otherwise
-#'multiple' or 'inconsistent'.
+'''
+Solves Ax=b. A has size n*n, b has size n*1
+Returns x if unique solution exists, otherwise
+'multiple' or 'inconsistent'.
+
+Time Complexity: O(n^3)
+Space Complexity: O(n^2)
+'''
 def gaussianelimination(A,b):
     h = 0
     k = 0

@@ -1,5 +1,9 @@
-from __future__ import division
+'''
+Calculates all primes, or the prime factorizations.
 
+Time Complexity: O(n) where n is the largest number to consider.
+Space Complexity: O(n)
+'''
 maxNumber = 10000
 primes = [2,3]
 primeToPos = {2:0, 3:1}
@@ -25,6 +29,6 @@ for x in range(3,maxNumber + 1):
         if prime >= x: break
         if x % prime == 0:
             foundD = True
-            primefactors.append(primefactors[x//prime]+[prime])
+            primefactors.append(primefactors[x/prime]+[prime])
             break
     if not foundD: primefactors.append([x])

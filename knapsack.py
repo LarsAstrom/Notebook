@@ -4,6 +4,9 @@ and total capacity W. DP[i][j] is the total value when taking a the i
 first objects with a total weight of at most j. The solution is found in
 DP[len(w)], where the specific problem will have different places to
 find the solution.
+
+Time Complexity: O(n*W)
+Space Complexity: O(n*W)
 '''
 def knapsack(w, v, W):
     n = len(w)

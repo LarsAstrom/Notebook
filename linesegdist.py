@@ -1,9 +1,15 @@
 from __future__ import division
-#line is defined by (a,b,c) such that ax+by+c=0 is the equation of the line.
-#segment is defined by (x1,y1,x2,y2), where the segment is from (x1,y1) to (x2,y2).
-#point is defined by (x,y).
+'''
+line is defined by (a,b,c) such that ax+by+c=0 is the equation of 
+the line. Segment is defined by (x1,y1,x2,y2), where the segment 
+is from (x1,y1) to (x2,y2). Point is defined by (x,y).
 
-#if (a,b,c) is returned, then the solution is a line. If (x,y) is returned, the solution is a point, if False then no solution.
+if (a,b,c) is returned, then the solution is a line. If (x,y) is 
+returned, the solution is a point, if False then no solution.
+
+Time Complexity: O(1)
+Space Complexity: O(1)
+'''
 def lineline(line1,line2):
     a1,b1,c1 = line1
     a2,b2,c2 = line2
@@ -29,7 +35,8 @@ def lineline(line1,line2):
         y = -a1*x/b1-c1/b1
         return (x,y)
 
-#If (x,y) is returned, this is the intersection point. Otherwise False is returned.
+#If (x,y) is returned, this is the intersection point. 
+#Otherwise False is returned.
 def lineseg(line1,seg):
     line2 = twopointstoline(seg)
     intersection = lineline(line1,line2)
@@ -47,7 +54,8 @@ def lineseg(line1,seg):
 def linepoint(line,p):
     a,b,c = line
     x,y = p
-    return ((b*(b*x-a*y)-a*c)/(a**2+b**2),(a*(-b*x+a*y)-b*c)/(a**2+b**2))
+    return ((b*(b*x-a*y)-a*c)/(a**2+b**2),
+            (a*(-b*x+a*y)-b*c)/(a**2+b**2))
 
 #Returns intersection point if it exists.
 def segseg(seg1,seg2):
@@ -61,7 +69,8 @@ def segseg(seg1,seg2):
 def segpoint(seg,p):
     line = twopointstoline(seg)
     p2 = linepoint(line,p)
-    if p2 and (p2[0]-seg[0])*(p2[0]-seg[2]) <= 0 and (p2[1]-seg[1])*(p2[1]-seg[3]) <= 0:
+    if p2 and (p2[0]-seg[0])*(p2[0]-seg[2]) <= 0 and \
+            (p2[1]-seg[1])*(p2[1]-seg[3]) <= 0:
         return p2
     else:
         if dist(p,(seg[0],seg[1])) < dist(p,(seg[2],seg[3])):

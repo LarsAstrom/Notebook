@@ -1,6 +1,10 @@
 '''
 Returns gcd for two numbers, or for all numbers in a list.
 Also returns Bezout's identity.
+
+Time Complexity: O(N) (if b == 1), O(logN) for random numbers,
+                N = a+b.
+Space Complexity: O(1)
 TODO: Do it iteratively.
 '''
 def gcd(a,b):

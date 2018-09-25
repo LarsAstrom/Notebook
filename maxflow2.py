@@ -1,12 +1,13 @@
 '''
 This is an algorithm for calculating max-flow. 
-Timecomplexity is approximately O(log(c)*m^2) [Worst case]. 
-Expected timecomplexity is much lower.
 edg is an adjacency list, where e[i] is a list of all i's neighbors.
 caps is a matrix where caps[i][j] is the current capacity from i to j.
 inf is some sufficiently large number (larger than max capacity).
 s and t are the source and sink, respectively.
 n is the number of nodes.
+
+Time Complexity: O(log(c)*m^2)
+Space Complexity: O(n^2)
 '''
 def dfs(vis,df,cmf,treshold):
     cur = df.pop()
@@ -32,6 +33,7 @@ def cap():
             toAdd = dfs([False]*n,[s],inf,2**t-1)
     return c
 
+#Example of useage.
 inf = 10**15
 n,m,s,t = map(int, raw_input().split())
 edg = [[] for _ in range(n)]
@@ -48,7 +50,8 @@ out = []
 alreadyout = set()
 for node in range(n):
     for ne in edg[node]:
-        if origcaps[node][ne] and (origcaps[node][ne]-caps[node][ne] > 0) and not (node,ne) in alreadyout:
+        if origcaps[node][ne] and (origcaps[node][ne]-caps[node][ne] > 0) \
+                and not (node,ne) in alreadyout:
             out.append([node,ne,origcaps[node][ne]-caps[node][ne]])
             alreadyout.add((node,ne))
             

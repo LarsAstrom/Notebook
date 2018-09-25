@@ -1,6 +1,9 @@
 '''
 Implementation of the chineese remainder theorem. 
 The equation is x = a_i mod b_i for a_i in a, b_i in b.
+
+Time Complexity: O(n^2), n = len(a)=len(b).
+Space complexity: O(n)
 '''
 
 def gcd(a,b):
@@ -25,5 +28,6 @@ def crt(a,b):
     if c1%k != c2%k: return (False, False)
     r = c1%k
     u,v = bezout(m1/k,m2/k)
-    x = ((((c1//k)*v*(m2//k) + (c2//k)*u*(m1//k))%(m1*m2/k/k))*k + r) % (m1*m2/k)
+    x = ((((c1//k)*v*(m2//k) + \
+            (c2//k)*u*(m1//k))%(m1*m2/k/k))*k + r) % (m1*m2/k)
     return crt(a[:-2]+[x], b[:-2]+[m1*m2/k])
