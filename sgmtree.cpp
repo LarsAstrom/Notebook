@@ -17,6 +17,7 @@ public:
     update(1,0,n-1,ind);
   }
 private:
+  int I = -9999999; // I
   void build(int node, int l, int r) {
     if (l==r) {tree[node]=vals[l]; return;}
     int mid=(l+r)/2;
@@ -25,14 +26,14 @@ private:
     tree[node]=max(tree[2*node],tree[2*node+1]); // op
   }
   int que(int node, int l, int r, int L, int R) {
-    if (l>R || r<L) return -99999; // I
+    if (l>R || r<L) return I; // I
     if (l>=L && r<=R) return tree[node];
     int mid=(l+r)/2;
     return max(que(2*node,l,mid,L,R),que(2*node+1,mid+1,r,L,R)); // op
   }
   void update(int node, int l, int r, int ind) {
     if (l==r && l==ind) {tree[node]=vals; return;}
-    if (l==r) return;
+    if (l>ind || r<ind) return;
     int mid=(l+r)/2;
     update(2*node,l,mid,ind);
     update(2*node+1,mid+1,r,ind);
