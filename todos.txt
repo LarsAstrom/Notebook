@@ -4,7 +4,7 @@
 
 3. Make GCD, etc iterative 
 
-4. Python: Segment tree, lazy segment tree, bipartite graphs, LIS, Josephus problem, area of polygon, pick's theorem, implementations(?!).
+4. Python: Segment tree, lazy segment tree, bipartite graphs, area of polygon, pick's theorem, implementations(?!).
 
 5. C++: Everything but segment tree.
 
