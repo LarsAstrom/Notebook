@@ -1,0 +1,155 @@
+\documentclass[8pt,a4paper,landscape,oneside]{amsart}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{fullpage}
+\usepackage{subcaption}
+\usepackage[scaled]{beramono}
+\usepackage{titling}
+\usepackage{datetime}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{bm}
+\usepackage{dirtytalk}
+
+% Minted
+\usepackage{minted}
+\newcommand{\codej}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{java}{#1}}
+\newcommand{\codec}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{cpp}{#1}}
+\newcommand{\codep}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{py}{#1}}
+\newcommand{\codeb}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{bash}{code/#1}}
+\newcommand{\codev}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{vim}{code/#1}}
+
+
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.1em\vspace{-1em}}%
+}
+\setlength{\headheight}{15.2pt}
+\setlength{\droptitle}{-20pt}
+
+\posttitle{\par\end{center}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Page \thepage}
+\lhead{from \_\_future\_\_ import solution -- Lunds Universitet}
+
+
+\newcommand{\bigO}{\mathcal{O}}
+
+\title{from \_\_future\_\_ import solution}
+\subtitle{Team Reference Document}
+\author{}
+\date{\ddmmyyyydate{\today{}}}
+
+\begin{document}
+
+\begin{multicols*}{2}
+\maketitle
+\thispagestyle{fancy}
+\vspace{-3em}
+
+\tableofcontents
+\begin{large}
+\section{Achieving AC on solved problems}
+\subsection{WA}
+\begin{itemize}
+    \item Does test input pass?
+    \item Is overflow possible?
+    \item Is it possible that we solved the wrong problem - reread the problem statement!
+    \item Start creating small test cases.
+    \item Does cout print with sufficient percision?
+    \item Abstract the implementation!
+\end{itemize}
+\subsection{TLE}
+\begin{itemize}
+    \item Is the solution sanity checked? (Time complexitity)
+\end{itemize}
+\subsection{RTE}
+\subsection{MLE}
+\section{Standard easy methods}
+\subsection{BFS-DFS}
+\section{Templates}
+\subsection{C++}
+\codec{template.cpp}
+\section{Data Structures}
+\subsection{Fenwick Tree}
+\codep{fenwicktree.py}
+\codej{fenwicktree.java}
+\subsection{Segment Tree}
+\codep{sgmtree.cpp}
+\subsection{Lazy Segment Tree}
+\subsection{Union Find}
+\codep{unionfind.py}
+\subsection{Monotone Queue}
+\subsection{Treap}
+\section{Graph Algorithms}
+\subsection{Distance from source to all nodes (pos weights) - Djikstra's algorithm}
+\codep{djikstra.py}
+\subsection{Distance from source to all nodes (neg weights) - Bellman Ford}
+\codep{bellmanford.py}
+\subsection{All distances in graph (neg weights) - Floyd Warshall}
+\codep{floydwarshall.py}
+\subsection{Bipartite graphs}
+\subsection{Network flow}
+\codep{maxflow.py}
+\codep{maxflow2.py}
+\subsection{Min cost max flow}
+\codep{mincostmaxflow.py}
+\codej{mincostmaxflow.java}
+\section{Dynamic Programming}
+\subsection{Longest increasing subsequence}
+\subsection{String functions}
+\codep{stringmatching.py}
+\subsection{Josephus problem}
+\codep{josephus.py}
+\subsection{Knapsack}
+\codep{knapsack.py}
+\section{Coordinate Geometry}
+\subsection{Area of polygon}
+\subsection{Distance between line, segment and point}
+\codep{linesegdist.py}
+\subsection{Pick's theorem}
+\subsection{Implementations}
+\section{Math}
+\subsection{System of equations}
+\codep{gaussianelimination.py}
+\subsection{Number Theory}
+\codep{gcdbezout.py}
+\subsection{Primes and Prime factorization}
+\codep{primecalc.py}
+\subsection{Chinese remainder theorem}
+\codep{crt.py}
+\section{Other things}
+\subsection{Convex Hull}
+\codep{convexhull.py}
+\section{Practice Contest Checklist}
+\begin{itemize}
+    \item Operations per second in py2
+    \item Operations per second in py3
+    \item Operations per second in java
+    \item Operations per second in c++
+    \item Operations per second on local machine
+    \item Is MLE called MLE or RTE?
+    \item What happens if extra output is added? What about one extra new line or space?
+    \item Look at documentation on judge.
+    \item Submit a clar.
+    \item Print a file.
+    \item Directory with test cases.
+\end{itemize}
+
+
+\end{large}
+\end{multicols*}
+\end{document}
