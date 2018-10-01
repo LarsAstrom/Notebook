@@ -30,7 +30,7 @@ public :
     
     Graph(int V) 
     { 
-        adj = new vector<Edge>[V]; 
+        adj=new vector<Edge>[V]; 
         this->V = V; 
         level = new int[V]; 
     } 
@@ -180,14 +180,14 @@ int main()
         edgs.push_back({u,v});
     }
     while (hi - lo > 1){
-        Graph G(N);
+        Graph G(M+N+2);
         int mid = (lo+hi)/2;
         for(int i = 0; i < M; i++){
             G.addEdge(0,i+1,1);
         } 
         for(int i = 0; i < M; i++){
             int u,v;
-            u = edgs[i].first; v = edgs[i].second;
+            u = edgs[i].first + M; v = edgs[i].second + M;
             G.addEdge(i+1,u,1);
             G.addEdge(i+1,v,1);
         }
@@ -196,27 +196,46 @@ int main()
         }
         if(G.DinicMaxflow(0,M+N+1)==M) hi = mid;
         else lo = mid;
+        /*
+        for(int i = 0; i <= N+M+1; i++){
+            cout << "------------Node " << i << "-------------" << endl;
+            for(int j = 0; j < G.adj[i].size(); j++){
+                Edge a = G.adj[i][j];
+                cout << "To: " << a.v << " " << a.flow << "/" << a.C << endl;
+            }
+        }
+        */
     }
     
-    Graph G(N);
+    Graph G(M+2+N);
     int mid = hi;
     for(int i = 0; i < M; i++){
         G.addEdge(0,i+1,1);
     } 
     for(int i = 0; i < M; i++){
         int u,v;
-        u = edgs[i].first; v = edgs[i].second;
+        u = edgs[i].first + M; v = edgs[i].second + M;
         G.addEdge(i+1,u,1);
         G.addEdge(i+1,v,1);
     }
     for(int i = M+1; i <= M+N; i++){
         G.addEdge(i,M+N+1,mid);
     }
+    G.DinicMaxflow(0,M+N+1);
     cout << hi << endl;
     for(int i = 1; i <= M; i++){
-        if(G.adj[i].flow == 1) cout << 0 << " ";
+        if(G.adj[i][1].flow == 1) cout << 0 << " ";
         else cout << 1 << " ";
     }
     cout << endl;
+    /*
+    for(int i = 0; i <= N+M+1; i++){
+        cout << "------------Node " << i << "-------------" << endl;
+        for(int j = 0; j < G.adj[i].size(); j++){
+            Edge a = G.adj[i][j];
+            cout << "To: " << a.v << " " << a.flow << "/" << a.C << endl;
+        }
+    }
+    */
     return 0; 
 } 
