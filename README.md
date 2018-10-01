@@ -9,7 +9,10 @@ This repository includes our notebook.
 
 ### Installation macos:
 - install `brew` from [brew.sh](https://brew.sh)
-- `brew cask install mactex` (untested if we need more deps than this)
+- `brew cask install mactex`
+- `sudo easy_install Pygments` used for latex package minted 
 
 ## Build
 `make all`
+
+if you get weird latex errors, try to do `make rebuild`
