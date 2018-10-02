@@ -19,9 +19,9 @@
 
 % Minted
 \usepackage{minted}
-\newcommand{\codej}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{java}{#1}}
-\newcommand{\codec}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{cpp}{#1}}
-\newcommand{\codep}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{py}{#1}}
+\newcommand{\codej}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{java}{code/#1}}
+\newcommand{\codec}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{cpp}{code/#1}}
+\newcommand{\codep}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{py}{code/#1}}
 \newcommand{\codeb}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{bash}{code/#1}}
 \newcommand{\codev}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{vim}{code/#1}}
 
@@ -90,6 +90,7 @@
 \subsection{Segment Tree}
 \codep{sgmtree.cpp}
 \subsection{Lazy Segment Tree}
+\codec{lazysgmtree.cpp}
 \subsection{Union Find}
 \codep{unionfind.py}
 \subsection{Monotone Queue}
@@ -119,6 +120,7 @@
 \codep{knapsack.py}
 \section{Coordinate Geometry}
 \subsection{Area of polygon}
+\codep{polygonArea.py}
 \subsection{Distance between line, segment and point}
 \codep{linesegdist.py}
 \subsection{Pick's theorem}
@@ -135,6 +137,8 @@
 \section{Other things}
 \subsection{Convex Hull}
 \codep{convexhull.py}
+\subsection{Fast Fourier Transform}
+\codec{fft.cpp}
 \section{Practice Contest Checklist}
 \begin{itemize}
     \item Operations per second in py2
