@@ -13,12 +13,12 @@ class Graph
 {
 public:
   ll V; // number of vertex
-  ll *level ; // stores level of a node
-  vector< Edge > *adj;
+  vector<ll> level; // stores level of a node
+  vector<vector<Edge>> adj; //can also be array of vector with global size
   Graph(ll V){
-    adj = new vector<Edge>[V];
+    adj.assign(V,vector<Edge>());
     this->V = V;
-    level = new ll[V];
+    level.assign(V,0);
   }
 
   void addEdge(ll u, ll v, ll C){
@@ -49,7 +49,7 @@ public:
     return level[t] < 0 ? false : true; //can/cannot reach target
   }
 
-  ll sendFlow(ll u, ll flow, ll t, ll start[]){
+  ll sendFlow(ll u, ll flow, ll t, vector<ll> &start){
     // Sink reached
     if (u == t)
         return flow;
@@ -77,7 +77,8 @@ public:
     while (BFS(s, t) == true){//while path from s to t
       // store how many edges are visited
       // from V { 0 to V }
-      ll *start = new ll[V+1];
+      vector <ll> start;
+      start.assign(V,0);
       // while flow is not zero in graph from S to D
       while (ll flow = sendFlow(s, 999999999, t, start))
         total += flow;// Add path flow to overall flow
@@ -100,36 +101,8 @@ int main()
         cin >> u >> v;
         edgs.push_back({u,v});
     }
-    while (hi - lo > 1){
-        Graph G(M+N+2);
-        ll mid = (lo+hi)/2;
-        for(ll i = 0; i < M; i++){
-            G.addEdge(0,i+1,1);
-        }
-        for(ll i = 0; i < M; i++){
-            ll u,v;
-            u = edgs[i].first + M; v = edgs[i].second + M;
-            G.addEdge(i+1,u,1);
-            G.addEdge(i+1,v,1);
-        }
-        for(ll i = M+1; i <= M+N; i++){
-            G.addEdge(i,M+N+1,mid);
-        }
-        if(G.DinicMaxflow(0,M+N+1)==M) hi = mid;
-        else lo = mid;
-        /*
-        for(int i = 0; i <= N+M+1; i++){
-            cout << "------------Node " << i << "-------------" << endl;
-            for(int j = 0; j < G.adj[i].size(); j++){
-                Edge a = G.adj[i][j];
-                cout << "To: " << a.v << " " << a.flow << "/" << a.C << endl;
-            }
-        }
-        */
-    }
+    Graph G(M+N+2);
 
-    Graph G(M+2+N);
-    ll mid = hi;
     for(ll i = 0; i < M; i++){
         G.addEdge(0,i+1,1);
     }
@@ -140,7 +113,34 @@ int main()
         G.addEdge(i+1,v,1);
     }
     for(ll i = M+1; i <= M+N; i++){
-        G.addEdge(i,M+N+1,mid);
+        G.addEdge(i,M+N+1,0);
+    }
+    while (hi - lo > 1){
+      ll mid = (lo+hi)/2;
+      for (int i=0; i<N+M+2; i++) {
+        for (int j=0; j<G.adj[i].size(); j++){
+          G.adj[i][j].flow=0;
+          if (i>=M+1 && i<=M+N && G.adj[i][j].v==M+N+1) G.adj[i][j].C=mid;
+        }
+      }
+      if(G.DinicMaxflow(0,M+N+1)==M) hi = mid;
+      else lo = mid;
+        /*
+        for(int i = 0; i <= N+M+1; i++){
+            cout << "------------Node " << i << "-------------" << endl;
+            for(int j = 0; j < G.adj[i].size(); j++){
+                Edge a = G.adj[i][j];
+                cout << "To: " << a.v << " " << a.flow << "/" << a.C << endl;
+            }
+        }
+        */
+    }
+    ll mid = hi;
+    for (int i=0; i<N+M+2; i++) {
+      for (int j=0; j<G.adj[i].size(); j++){
+        G.adj[i][j].flow=0;
+        if (i>=M+1 && i<=M+N && G.adj[i][j].v==M+N+1) G.adj[i][j].C=mid;
+      }
     }
     G.DinicMaxflow(0,M+N+1);
     cout << hi << endl;
