@@ -40,9 +40,6 @@ def lineline(line1,line2):
 def lineseg(line1,seg):
     line2 = twopointstoline(*seg)
     intersection = lineline(line1,line2)
-    print line1
-    print line2
-    print 'Intersection in lineseg is: ',intersection
     if len(intersection) == 3:
         return (seg[0],seg[1])
     elif len(intersection) == 2:
@@ -88,8 +85,3 @@ def dist(p1,p2):
 def twopointstoline(x1,y1,x2,y2):
     return (y2-y1,x1-x2,x2*y1-x1*y2)
 
-seg1 = (0,0,2,3)
-seg2 = (0,2,2,2)
-o = segseg(seg1,seg2)
-print o
-#print 'Intersection is: ', segseg(seg1,seg2)
