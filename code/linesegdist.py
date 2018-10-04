@@ -17,9 +17,9 @@ def lineline(line1,line2):
         if b1*c2 == b2*c1: return (a1,b1,c1)
         else: return False
     elif a1 == 0:
-        return (-b2*c1/(a2*b1)-c2,c1/b1) 
+        return ((-c2+b2*c1)/(a2*b1),-c1/b1) 
     elif a2 == 0:
-        return (-b1*c2/(a1*b2)-c1,c2/b2)
+        return ((-c1+c2*b1)/(b2*a1),-c2/b2)
     elif b1 == b2 == 0:
         if a1*c2 == a2*c1: return (a1,b1,c1)
         else: return False
@@ -38,8 +38,11 @@ def lineline(line1,line2):
 #If (x,y) is returned, this is the intersection point. 
 #Otherwise False is returned.
 def lineseg(line1,seg):
-    line2 = twopointstoline(seg)
+    line2 = twopointstoline(*seg)
     intersection = lineline(line1,line2)
+    print line1
+    print line2
+    print 'Intersection in lineseg is: ',intersection
     if len(intersection) == 3:
         return (seg[0],seg[1])
     elif len(intersection) == 2:
@@ -59,15 +62,15 @@ def linepoint(line,p):
 
 #Returns intersection point if it exists.
 def segseg(seg1,seg2):
-    line1 = twopointstoline(seg1)
-    line2 = twopointstoline(seg2)
+    line1 = twopointstoline(*seg1)
+    line2 = twopointstoline(*seg2)
     if lineseg(line1,seg2) and lineseg(line2,seg1):
         return lineseg(line1,seg2)
     return False
 
 #Returns the point closest to p on the segment seg.
 def segpoint(seg,p):
-    line = twopointstoline(seg)
+    line = twopointstoline(*seg)
     p2 = linepoint(line,p)
     if p2 and (p2[0]-seg[0])*(p2[0]-seg[2]) <= 0 and \
             (p2[1]-seg[1])*(p2[1]-seg[3]) <= 0:
@@ -84,3 +87,9 @@ def dist(p1,p2):
 #Returns the line as (a,b,c) from two points.
 def twopointstoline(x1,y1,x2,y2):
     return (y2-y1,x1-x2,x2*y1-x1*y2)
+
+seg1 = (0,0,2,3)
+seg2 = (0,2,2,2)
+o = segseg(seg1,seg2)
+print o
+#print 'Intersection is: ', segseg(seg1,seg2)
