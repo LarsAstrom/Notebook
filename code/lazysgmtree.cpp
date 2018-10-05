@@ -1,9 +1,8 @@
-//WIP
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
 #define rep(i,a,b) for (ll i = a; i<ll(b); i++)
-//This is a lazy sgmtree, but updates doesnt inc, it sets all values in segment
+//This is a lazy sgmtree, but updates doesnt inc, query sets all values in segment
 class sgmtree {
 public:
   vector<int> vals;
