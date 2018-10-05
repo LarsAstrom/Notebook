@@ -9,6 +9,6 @@ from __future__ import division
 
 def area(pts):
     out = 0
-    for i in range(-1,len(out)-1):
+    for i in range(-1,len(pts)-1):
         out += pts[i][0]*pts[i+1][1]-pts[i][1]*pts[i+1][0]
     return abs(out/2)

@@ -80,9 +80,10 @@
 \subsection{MLE}
 \section{Standard easy methods}
 \subsection{BFS-DFS}
-\section{Templates}
+\section{Templates, etc.}
 \subsection{C++}
 \codec{template.cpp}
+\codec{input.cpp}
 \section{Data Structures}
 \subsection{Fenwick Tree}
 \codep{fenwicktree.py}
@@ -105,7 +106,7 @@
 \subsection{Bipartite graphs}
 \codec{kuhns.cpp}
 \subsection{Network flow}
-\codep{dinic.cpp}
+\codec{dinic.cpp}
 \codep{maxflow.py}
 \codep{maxflow2.py}
 \subsection{Min cost max flow}
@@ -121,11 +122,14 @@
 \subsection{Knapsack}
 \codep{knapsack.py}
 \section{Coordinate Geometry}
-\subsection{Area of polygon}
+\subsection{Area of polygon}\label{sec: polyarea}
 \codep{polygonArea.py}
 \subsection{Distance between line, segment and point}
+Note that errors have been found in the code, and the code has not been checked thoroughly.
 \codep{linesegdist.py}
 \subsection{Pick's theorem}
+Pick's theorem states that the area, $A$, of a polygon with lattice coordinates for its corners is given by $$A=I+\frac{B}{2}-1,$$ where $B$ is the number of boundary lattice points and $I$ is the number of interior lattice points. This can often be used to find the number of interior points of a polygon since the area is easily computed, see \ref{sec: polyarea}, and the number of boundary lattice points is calculated as follows:
+\codep{boundarypoints.py}
 \subsection{Implementations}
 \section{Math}
 \subsection{System of equations}
