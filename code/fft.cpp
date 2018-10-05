@@ -33,12 +33,13 @@ vector<ll> modfft(vector<ll> inp) {
   for(ll k = 1; k < n; k = k*2){
       for(ll i = 0; i < n; i = i + 2*k){
           for(ll j = 0; j < k; j++){
-              ll z = modomega[j*n/(2*k)] * ret[i + j + k];
-              ret[i + j + k] = ret[i + j] - z;
-              ret[i + j] = ret[i + j] + z;
+              ll z = (modomega[j*n/(2*k)] * ret[i + j + k])%mod;
+              ret[i + j + k] = (ret[i + j] - z + mod)%mod;
+              ret[i + j] = (ret[i + j] + z)%mod;
           }
       }
   }
+  return ret;
 }
 
 void init() {
@@ -48,12 +49,12 @@ void init() {
   modomega.push_back(1);
   for(ll i = 1; i < n; i++) modomega.push_back((modomega[i-1]*modomega1)%mod);
 }
-
+//needs to be tweaked for modfft
 vector<complex<double> > ifft(vector<complex<double> > inp){
     vector<complex<double> > temp;
     temp.push_back(inp[0]);
     for(ll i = n-1; i > 0; i--) temp.push_back(inp[i]);
-    temp = fft(temp);//change to modfft for mod
+    temp = fft(temp);
     for(ll i = 0; i < n; i++) temp[i] /= n;
     return temp;
 }
