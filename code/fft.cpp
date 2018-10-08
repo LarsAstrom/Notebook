@@ -44,10 +44,13 @@ vector<ll> modfft(vector<ll> inp) {
 
 void init() {
   r.push_back(0);
-  for(ll i = 1; i < n; i++) r.push_back(r[i/2]/2 + ((i&1) << (logN-1)));
-  for(ll i = 0; i < n; i++) omega.push_back({cos(2*i*pi/n),sin(2*i*pi/n)});
+  for(ll i = 1; i < n; i++) 
+      r.push_back(r[i/2]/2 + ((i&1) << (logN-1)));
+  for(ll i = 0; i < n; i++) 
+      omega.push_back({cos(2*i*pi/n),sin(2*i*pi/n)});
   modomega.push_back(1);
-  for(ll i = 1; i < n; i++) modomega.push_back((modomega[i-1]*modomega1)%mod);
+  for(ll i = 1; i < n; i++) 
+      modomega.push_back((modomega[i-1]*modomega1)%mod);
 }
 //needs to be tweaked for modfft
 vector<complex<double> > ifft(vector<complex<double> > inp){
