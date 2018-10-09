@@ -10,6 +10,7 @@ returned, the solution is a point, if False then no solution.
 Time Complexity: O(1)
 Space Complexity: O(1)
 '''
+#This method is not completely verified.
 def lineline(line1,line2):
     a1,b1,c1 = line1
     a2,b2,c2 = line2
@@ -37,6 +38,7 @@ def lineline(line1,line2):
 
 #If (x,y) is returned, this is the intersection point. 
 #Otherwise False is returned.
+#This method is not entirely verified.
 def lineseg(line1,seg):
     line2 = twopointstoline(*seg)
     intersection = lineline(line1,line2)
@@ -51,6 +53,7 @@ def lineseg(line1,seg):
         return False
 
 #The orthogonal projection is returned.
+#This method is not entirely verified.
 def linepoint(line,p):
     a,b,c = line
     x,y = p
@@ -58,6 +61,7 @@ def linepoint(line,p):
             (a*(-b*x+a*y)-b*c)/(a**2+b**2))
 
 #Returns intersection point if it exists.
+#This method is not entirely verified.
 def segseg(seg1,seg2):
     line1 = twopointstoline(*seg1)
     line2 = twopointstoline(*seg2)
@@ -66,6 +70,7 @@ def segseg(seg1,seg2):
     return False
 
 #Returns the point closest to p on the segment seg.
+#This method is verified by Lars (problem halloweemirrors)
 def segpoint(seg,p):
     line = twopointstoline(*seg)
     p2 = linepoint(line,p)
@@ -78,10 +83,10 @@ def segpoint(seg,p):
         else: return (seg[2],seg[3])
 
 #Returns the distance between p1 and p2.
+#This method is correct.
 def dist(p1,p2):
     return ((p1[0]-p2[0])**2+(p1[1]-p2[1])**2)**0.5
 
 #Returns the line as (a,b,c) from two points.
 def twopointstoline(x1,y1,x2,y2):
     return (y2-y1,x1-x2,x2*y1-x1*y2)
-
