@@ -17,6 +17,7 @@
 \usepackage{bm}
 \usepackage{dirtytalk}
 
+\setcounter{secnumdepth}{4}
 % Minted
 \usepackage{minted}
 \newcommand{\codej}[1]{\inputminted[fontsize=\large,tabsize=2,baselinestretch=1]{java}{code/#1}}
@@ -65,9 +66,10 @@
 \section{Achieving AC on solved problems}
 \subsection{WA}
 \begin{itemize}
+    \item Edge cases (minimal input, etc)? 
     \item Does test input pass?
     \item Is overflow possible?
-    \item Is it possible that we solved the wrong problem - reread the problem statement!
+    \item Is it possible that we solved the wrong problem? Reread the problem statement!
     \item Start creating small test cases.
     \item Does cout print with sufficient percision?
     \item Abstract the implementation!
@@ -75,17 +77,54 @@
 \subsection{TLE}
 \begin{itemize}
     \item Is the solution sanity checked? (Time complexitity)
+    \item Use pypy / rewrite in C++ and Java
+    \item Can DP be applied in some part?
+    \item Try creating worst case input to see how far away the solution is
+    \item Binary search instead of exhaustive search
+    \item Binary search over the answer
 \end{itemize}
 \subsection{RTE}
+\begin{itemize}
+    \item Recursion limit in python?
+    \item Out of bounds?
+    \item Division by 0?
+    \item Modifying something we iterate over?
+    \item Not using well defined sorting?
+    \item If nothing makes sense, try binary search with try-catch/except.
+\end{itemize}
 \subsection{MLE}
-\section{Standard easy methods}
-\subsection{BFS-DFS}
+\begin{itemize}
+    \item Create objects outside recursive function
+    \item Rewrite recursive solution to iterative
+\end{itemize}
+\section{Methods and ideas}
+\subsection{When there is an obvious TLE solution}
+\subsubsection{In DP, drop one parameter and recover from others}
+\subsubsection{In DP, use FFT to reduce one n to log n}
+\subsubsection{Use some sorted datastructure}
+\subsubsection{Is something bounded by the statement?}
+\subsection{General standard ideas}
+\subsubsection{BFS-DFS}
+\subsubsection{Square-root tricks}
+\begin{itemize}
+    \item To insert
+\end{itemize}
+\subsubsection{DP}
+\subsubsection{Flow}
+\begin{itemize}
+    \item Regular flow 
+    \item Min cost
+    \item Run the flow and then look at min cut 
+\end{itemize}
+\subsubsection{View the problem as a graph}
+\subsubsection{Color the graph}
+\subsubsection{Use some characteristic of the problem (i.e. bounds)}
 \section{Templates, etc.}
 \subsection{C++}
 \codec{template.cpp}
 \codec{input.cpp}
 \subsection{Python}
-If a specified output, say $o$, of decimals, say $x$, should be given then write $$print '\%.xf' \% o$$
+\codep{template.py}
 \section{Data Structures}
 \subsection{Fenwick Tree}
 \codep{fenwicktree.py}
