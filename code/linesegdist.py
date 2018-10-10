@@ -1,11 +1,13 @@
 from __future__ import division
 '''
 line is defined by (a,b,c) such that ax+by+c=0 is the equation of 
-the line. Segment is defined by (x1,y1,x2,y2), where the segment 
-is from (x1,y1) to (x2,y2). Point is defined by (x,y).
+the line. 
+Segment is defined by (x1,y1,x2,y2), where the segment 
+is from (x1,y1) to (x2,y2). 
+Point is defined by (x,y).
 
-if (a,b,c) is returned, then the solution is a line. If (x,y) is 
-returned, the solution is a point, if False then no solution.
+If return has length 4 it is a segment, 3 it is a line, 2 it is a point.
+If return has length 1, it is False, and then no intersection exists.
 
 Time Complexity: O(1)
 Space Complexity: O(1)
@@ -14,36 +16,20 @@ Space Complexity: O(1)
 def lineline(line1,line2):
     a1,b1,c1 = line1
     a2,b2,c2 = line2
-    if a1 == a2 == 0:
-        if b1*c2 == b2*c1: return (a1,b1,c1)
-        else: return False
-    elif a1 == 0:
-        return ((-c2+b2*c1)/(a2*b1),-c1/b1) 
-    elif a2 == 0:
-        return ((-c1+c2*b1)/(b2*a1),-c2/b2)
-    elif b1 == b2 == 0:
-        if a1*c2 == a2*c1: return (a1,b1,c1)
-        else: return False
-    elif b1 == 0:
-        return (-a2*c1/(b2*a1)-c2,c1/a1)
-    elif b2 == 0:
-        return (-a1*c2/(b1*a2)-c2,c2/a2)
-    elif a1/b1 == a2/b2:
-        if c1/b1 == c2/b2: return (a1,b1,c1)
-        else: return False
+    cp = a1*b2 - a2*b1
+    if cp != 0:
+        return ((b1*c2 - b2*c1)/cp,(a2*c1 - a1*c2)/cp)
     else:
-        x = (c2/b2-c1/b1)/(a1/b1-a2/b2)
-        y = -a1*x/b1-c1/b1
-        return (x,y)
+        if a1*c2 == a2*c1 and b1*c2 == b2*c1:
+            return line1
+        return False
 
-#If (x,y) is returned, this is the intersection point. 
-#Otherwise False is returned.
 #This method is not entirely verified.
 def lineseg(line1,seg):
     line2 = twopointstoline(*seg)
     intersection = lineline(line1,line2)
     if len(intersection) == 3:
-        return (seg[0],seg[1])
+        return seg
     elif len(intersection) == 2:
         x,y = intersection
         if (x-seg[0])*(x-seg[2]) <= 0 and (y-seg[1])*(y-seg[3]) <= 0:
@@ -62,6 +48,7 @@ def linepoint(line,p):
 
 #Returns intersection point if it exists.
 #This method is not entirely verified.
+#Note, if part of the segments is solution it fails at the moment.
 def segseg(seg1,seg2):
     line1 = twopointstoline(*seg1)
     line2 = twopointstoline(*seg2)
@@ -77,7 +64,7 @@ def segpoint(seg,p):
     if p2 and (p2[0]-seg[0])*(p2[0]-seg[2]) <= 0 and \
             (p2[1]-seg[1])*(p2[1]-seg[3]) <= 0:
         return p2
-    else:
+    else: #Orthogo
         if dist(p,(seg[0],seg[1])) < dist(p,(seg[2],seg[3])):
             return (seg[0],seg[1])
         else: return (seg[2],seg[3])
