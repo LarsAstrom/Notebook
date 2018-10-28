@@ -55,6 +55,10 @@ private:
     //if (l==r && l==ind) {tree[node]=vals; return;}
     //if (l>ind || r<ind) return;
     int mid=(l+r)/2;
+    if (lazyupdts[node]!=-1) { //propagate down current lazyvalues
+      update(2*node,l,mid,l,mid,lazyupdts[node]);
+      update(2*node+1,mid+1,r,mid+1,r,lazyupdts[node]);
+    }
     update(2*node,l,mid,L,R,val);
     update(2*node+1,mid+1,r,L,R,val);
     tree[node]=max(tree[2*node],tree[2*node+1]); // Op
@@ -69,6 +73,7 @@ int main() {   //0 1 2 3 4 5 6 7  8 9
   cout << s.que(4,5) << endl; //10
   cout << s.que(5,6) << endl; //4
   s.update(4,8,7);
-  cout << s.que(4,8) << endl; //7
+  s.update(5,6,11);
+  cout << s.que(4,8) << endl; //11
   cout << s.que(8,9) << endl; //15
 }
