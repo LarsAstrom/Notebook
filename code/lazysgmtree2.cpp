@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 #define rep(i,a,b) for (ll i = a; i<ll(b); i++)
-//This is a lazy sgmtree, but updates doesnt inc, query sets all values in segment
+//This is a lazy sgmtree, update query increments all values between L and R
 class sgmtree {
 public:
   vector<int> vals;
@@ -13,14 +13,14 @@ public:
     vals=x;
     n=x.size();
     tree.assign(3*n+4,0);
-    lazyupdts.assign(3*n+4,-1);
+    lazyupdts.assign(3*n+4,0);
     build(1,0,n-1);
   }
   int que(int L, int R) {
     return que(1,0,n-1,L,R);
   }
   void update(int L, int R, int val) {
-    //vals[ind]=val; //Set value val for all nodes L to R
+    //Inc with val for all nodes L to R
     update(1,0,n-1,L,R,val);
   }
 private:
@@ -36,10 +36,10 @@ private:
     if (l>R || r<L) return I; // I
     if (l>=L && r<=R) return tree[node];
     int mid=(l+r)/2;
-    if (lazyupdts[node]!=-1) {
+    if (lazyupdts[node]!=0) {
       update(node*2,l,mid,l,mid,lazyupdts[node]);
       update(2*node+1,mid+1,r,mid+1,r,lazyupdts[node]);
-      lazyupdts[node]=-1;
+      lazyupdts[node]=0;
     }
     return max(que(2*node,l,mid,L,R),que(2*node+1,mid+1,r,L,R)); // op
   }
@@ -47,18 +47,18 @@ private:
     if (l>R || r<L) return;
     if (l>=L && r<=R) {
       //Lazy update this
-      tree[node]=val; //Op
+      tree[node]+=val; //Op
       if (l==r) {return;}
-      lazyupdts[node]=val;
+      lazyupdts[node]+=val;
       return;
     }
     //if (l==r && l==ind) {tree[node]=vals; return;}
     //if (l>ind || r<ind) return;
     int mid=(l+r)/2;
-    if (lazyupdts[node]!=-1) { //propagate down current lazyvalues
+    if (lazyupdts[node]!=0) { //propagate down current lazyvalues
       update(2*node,l,mid,l,mid,lazyupdts[node]);
       update(2*node+1,mid+1,r,mid+1,r,lazyupdts[node]);
-      lazyupdts[node]=-1;
+      lazyupdts[node]=0;
     }
     update(2*node,l,mid,L,R,val);
     update(2*node+1,mid+1,r,L,R,val);
@@ -70,11 +70,11 @@ int main() {   //0 1 2 3 4 5 6 7  8 9
   sgmtree s(x);
   cout << s.que(0,9) << endl; //32;
   cout << s.que(2,5) << endl; //5
-  s.update(0,4,10);
-  cout << s.que(4,5) << endl; //10
+  s.update(0,4,10); //11,16,16,16,12,4,3,32,2,15
+  cout << s.que(4,5) << endl; //12
   cout << s.que(5,6) << endl; //4
-  s.update(4,8,7);
-  s.update(5,6,11);
-  cout << s.que(4,8) << endl; //11
+  s.update(4,8,-7); //11,16,16,16,5,-3,-4,25,-5,15
+  s.update(5,6,11); //11,16,16,16,5,8,7,25,-5,15
+  cout << s.que(4,8) << endl; //25
   cout << s.que(8,9) << endl; //15
 }
