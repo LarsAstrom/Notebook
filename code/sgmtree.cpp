@@ -9,7 +9,7 @@ public:
   sgmtree(vector<int> x) {
     vals=x;
     n=x.size();
-    tree.assign(3*n+4,0);
+    tree.assign(4*n+4,0);
     build(1,0,n-1);
   }
   int que(int L, int R) {
