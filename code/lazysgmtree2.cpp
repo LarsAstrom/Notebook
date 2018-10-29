@@ -5,37 +5,37 @@ typedef long long ll;
 //This is a lazy sgmtree, update query increments all values between L and R
 class sgmtree {
 public:
-  vector<int> vals;
-  vector<int> tree;
-  vector<int> lazyupdts;
-  int n;
-  sgmtree(vector<int> x) {
+  vector<ll> vals;
+  vector<ll> tree;
+  vector<ll> lazyupdts;
+  ll n;
+  sgmtree(vector<ll> x) {
     vals=x;
     n=x.size();
     tree.assign(4*n+4,0);
     lazyupdts.assign(4*n+4,0);
     build(1,0,n-1);
   }
-  int que(int L, int R) {
+  ll que(ll L, ll R) {
     return que(1,0,n-1,L,R);
   }
-  void update(int L, int R, int val) {
+  void update(ll L, ll R, ll val) {
     //Inc with val for all nodes L to R
     update(1,0,n-1,L,R,val);
   }
 private:
-  int I = -9999999; // I
-  void build(int node, int l, int r) {
+  ll I = -9999999; // I
+  void build(ll node, ll l, ll r) {
     if (l==r) {tree[node]=vals[l]; return;}
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     build(2*node,l,mid);
     build(2*node+1,mid+1,r);
     tree[node]=max(tree[2*node],tree[2*node+1]); // op
   }
-  int que(int node, int l, int r, int L, int R) {
+  ll que(ll node, ll l, ll r, ll L, ll R) {
     if (l>R || r<L) return I; // I
     if (l>=L && r<=R) return tree[node];
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     if (lazyupdts[node]!=0) {
       update(node*2,l,mid,l,mid,lazyupdts[node]);
       update(2*node+1,mid+1,r,mid+1,r,lazyupdts[node]);
@@ -43,7 +43,7 @@ private:
     }
     return max(que(2*node,l,mid,L,R),que(2*node+1,mid+1,r,L,R)); // op
   }
-  void update(int node, int l, int r, int L, int R, int val) {
+  void update(ll node, ll l, ll r, ll L, ll R, ll val) {
     if (l>R || r<L) return;
     if (l>=L && r<=R) {
       //Lazy update this
@@ -54,7 +54,7 @@ private:
     }
     //if (l==r && l==ind) {tree[node]=vals; return;}
     //if (l>ind || r<ind) return;
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     if (lazyupdts[node]!=0) { //propagate down current lazyvalues
       update(2*node,l,mid,l,mid,lazyupdts[node]);
       update(2*node+1,mid+1,r,mid+1,r,lazyupdts[node]);
@@ -66,7 +66,7 @@ private:
   }
 };
 int main() {   //0 1 2 3 4 5 6 7  8 9
-  vector<int> x={1,5,5,5,2,4,3,32,2,15};
+  vector<ll> x={1,5,5,5,2,4,3,32,2,15};
   sgmtree s(x);
   cout << s.que(0,9) << endl; //32;
   cout << s.que(2,5) << endl; //5

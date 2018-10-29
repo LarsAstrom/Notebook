@@ -3,41 +3,41 @@ using namespace std;
 
 class sgmtree {
 public:
-  vector<int> vals;
-  vector<int> tree;
-  int n;
-  sgmtree(vector<int> x) {
+  vector<ll> vals;
+  vector<ll> tree;
+  ll n;
+  sgmtree(vector<ll> x) {
     vals=x;
     n=x.size();
     tree.assign(4*n+4,0);
     build(1,0,n-1);
   }
-  int que(int L, int R) {
+  ll que(ll L, ll R) {
     return que(1,0,n-1,L,R);
   }
-  void update(int ind, int val) {
+  void update(ll ind, ll val) {
     vals[ind]=val;
     update(1,0,n-1,ind);
   }
 private:
-  int I = 0; // I
-  void build(int node, int l, int r) {
+  ll I = 0; // I
+  void build(ll node, ll l, ll r) {
     if (l==r) {tree[node]=vals[l]; return;}
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     build(2*node,l,mid);
     build(2*node+1,mid+1,r);
     tree[node]=tree[2*node]+tree[2*node+1]; // op
   }
-  int que(int node, int l, int r, int L, int R) {
+  ll que(ll node, ll l, ll r, ll L, ll R) {
     if (l>R || r<L) return I; // I
     if (l>=L && r<=R) return tree[node];
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     return que(2*node,l,mid,L,R)+que(2*node+1,mid+1,r,L,R); // op
   }
-  void update(int node, int l, int r, int ind) {
+  void update(ll node, ll l, ll r, ll ind) {
     if (l==r && l==ind) {tree[node]=vals[ind]; return;}
     if (l>ind || r<ind) return;
-    int mid=(l+r)/2;
+    ll mid=(l+r)/2;
     update(2*node,l,mid,ind);
     update(2*node+1,mid+1,r,ind);
     tree[node]=tree[2*node]+tree[2*node+1]; // Op
