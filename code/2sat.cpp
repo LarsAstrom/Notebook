@@ -7,6 +7,7 @@ class twosat{
 public:
     //for variable i, two variables are assigned as 2*i and
     //2*i+1 in G. 2*i is i, and 2*i+1 is not i.
+    //Note that this has to be taken care of when adding clauses.
     vector<vector<int> > G_forward, G_reverse;
     vector<int> x,y;
     ll N;
@@ -17,6 +18,8 @@ public:
         marked.assign(N,false);
         component.assign(N,-1);
     }
+    //addClause(i,j) adds the clause from i to j. But negations have
+    //to be considered in the main.
     void addClause(int i, int j){
         G_forward[i^1].push_back(j);
         G_forward[j^1].push_back(i);
