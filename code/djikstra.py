@@ -3,8 +3,8 @@ Implementation of djikstras algorithm. Finds the shortest path from a
 source, to all other nodes (non-negative weights).
 adj is a list of adjacency lists and s the source node.
 
-Time Complexity: O(NlogN), where N is the number of nodes.
-Space Complexity: O(N)
+Time Complexity: O(M + NlogN), where N is the number of nodes, M edges.
+Space Complexity: O(M + N)
 '''
 from heapq import heappush, heappop
 
@@ -21,7 +21,7 @@ def djikstra(adj,s):
         if vis[curE]: continue
         vis[curE] = True
         for ne in adj[curE]:
-            alt = curD + ne[1]
+            altD = curD + ne[1]
             if altD < d[ne[0]]:
                 heappush(pq,(altD,ne[0]))
                 d[ne[0]] = altD
