@@ -1,11 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll INF = 1e18;
 // Finds mincost maxflow using a queue based bellmanford
 // The queue based is a lot faster than normal bellmanford
  
 struct Edge {
     int to;
     int flow;
-    int cap; //capacity
-    int cost;
+    ll cap; //capacity
+    ll cost;
     int rev; //reverse edge index
 };
 
@@ -17,29 +22,24 @@ public:
         this->V = V;
         adj.assign(V, vector<Edge>());
     }
-
-    void addEdge(int from, int to, int c, int cost){
+    void addEdge(int from, int to, ll c, ll cost){
         Edge e = {to, 0, c, cost, adj[to].size()}; 
         Edge rev = {from, 0, 0, -cost, adj[from].size()};
         adj[from].push_back(e);
         adj[to].push_back(rev);
     }
-    
     // Find augumenting path and send flow
     // Returns added flow and added cost 
-    pair<int,int> bellmanFord(int source, int sink){
-        vector<int> dist(V, INF);
+    pair<ll,ll> bellmanFord(int source, int sink){
+        vector<ll> dist(V, INF);
         vector<int> prev(V,-1);
         vector<int> prevEdge(V,-1);
-        vector<int> curFlow(V,INF);
+        vector<ll> curFlow(V,INF);
         dist[source] = 0;
-
-
         vector<bool> inqueue(V,false);
         queue<int> que;
         que.push(source);
-        
-        while( que.size()%V != 0){
+        while(que.size()%V != 0){
             int u = que.front();
             que.pop();
             inqueue[u] = false;
@@ -49,7 +49,7 @@ public:
                     continue;
                 }
                 int v = e.to;
-                int ndist = dist[u] + e.cost;
+                ll ndist = dist[u] + e.cost;
                 if (dist[v] > ndist){
                     dist[v] = ndist;
                     prev[v] = u;
@@ -62,9 +62,8 @@ public:
                 }
             }
         }
-
         if (dist[sink] == INF) return {0,0};
-        int flow = curFlow[sink];
+        ll flow = curFlow[sink];
         int v = sink;
         while (v != source){
             adj[prev[v]][prevEdge[v]].flow += flow;
@@ -73,5 +72,14 @@ public:
         }
         return {flow, flow * dist[sink]};
     }
-
+    pair<ll,ll> minCostMaxFlow(int S, int T){
+        ll flow = 0, cost = 0;
+        pair<ll,ll> temp = bellmanFord(S,T);
+        while(temp.first > 0){
+            flow += temp.first; 
+            cost += temp.second;
+            temp = bellmanFord(S,T);
+        }
+        return {flow,cost};
+    }
 };
