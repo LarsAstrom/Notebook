@@ -1,8 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
-
+/*
+O(n) creation, O(log n) update/query
+Queries are inclusive [L,R]
+*/
 class sgmtree {
 public:
   vector<ll> vals;

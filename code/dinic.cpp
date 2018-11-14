@@ -1,4 +1,7 @@
 // C++ implementation of Dinic's Algorithm
+// O(V*V*E) for generall flow-graphs. (But with a good constant)
+// O(E*sqrt(V)) for bipartite matching graphs.
+// O(E*min(V**(2/3),E**(1/3))) For unit-capacity graphs
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long ll;
