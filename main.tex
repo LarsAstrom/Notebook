@@ -212,7 +212,7 @@ Pick's theorem states that the area, $A$, of a polygon with lattice coordinates 
 Use some characteristics of the problem (i.e. bounds)
 \begin{itemize}
   \item $N\leq10$: Exhaustive search $N!$
-  \item $N\leq20$: Exponential
+  \item $N\leq20$: Exponential, bitmask-DP?
   \item $N\leq 10^4$: Quadratic
   \item $N\leq 10^6$: Has to be NlogN
 \end{itemize}
@@ -222,7 +222,11 @@ Greedy
   \item Scheduling
 \end{itemize}
 BFS/DFS\\
-DP\\
+DP
+\begin{itemize}
+  \item Bitmask
+  \item Recursively, storing answers
+\end{itemize}
 Binary search
 \begin{itemize}
   \item Over the answer
