@@ -17,10 +17,10 @@ def djikstra(adj,s):
     for i in range(len(adj)): 
         heappush(pq, (d[i],i))
     while pq:
-        curD, curE = heappop(pq)
-        if vis[curE]: continue
-        vis[curE] = True
-        for ne in adj[curE]:
+        curD, curN = heappop(pq)
+        if vis[curN]: continue
+        vis[curN] = True
+        for ne in adj[curN]:
             altD = curD + ne[1]
             if altD < d[ne[0]]:
                 heappush(pq,(altD,ne[0]))

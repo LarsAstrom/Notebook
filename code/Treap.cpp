@@ -110,7 +110,8 @@ pair<bool, Treap*> exists(Treap *root, ll val) {
   pair<Treap*,Treap*> firstSplit = split(root,val);
   if (firstSplit.second == NULL) return {false, firstSplit.first};
   pair<Treap*,Treap*> secondSplit = split(firstSplit.second,val+1);
-  return {secondSplit.first != NULL,meld(firstSplit.first,meld(secondSplit.first,secondSplit.second))};
+  return {secondSplit.first != NULL,meld(firstSplit.first,
+          meld(secondSplit.first,secondSplit.second))};
 }
 
 ll next(Treap *root, ll val){

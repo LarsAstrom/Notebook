@@ -2,7 +2,7 @@
 Constructs a fenwicktree of an array. Can update a bit and get the 
 sum up to and including i in the array.
 
-Time Complexity: O(NlogN) for construction, O(logN) for update and querry.
+Time Complexity: O(NlogN) for construction, O(logN) for update and query.
 SpaceComplexity: O(N)
 '''
 def fenwicktree(arr):
