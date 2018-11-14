@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 #define rep(i,a,b) for (ll i = a; i<ll(b); i++)
-//This is a lazy sgmtree, but updates doesnt inc, query sets all values in segment
+//This is a lazy sgmtree, but updates doesnt inc, update sets all values in segment
 class sgmtree {
 public:
   vector<ll> vals;
@@ -65,16 +65,3 @@ private:
     tree[node]=max(tree[2*node],tree[2*node+1]); // Op
   }
 };
-int main() {   //0 1 2 3 4 5 6 7  8 9
-  vector<ll> x={1,5,5,5,2,4,3,32,2,15};
-  sgmtree s(x);
-  cout << s.que(0,9) << endl; //32;
-  cout << s.que(2,5) << endl; //5
-  s.update(0,4,10);
-  cout << s.que(4,5) << endl; //10
-  cout << s.que(5,6) << endl; //4
-  s.update(4,8,7);
-  s.update(5,6,11);
-  cout << s.que(4,8) << endl; //11
-  cout << s.que(8,9) << endl; //15
-}

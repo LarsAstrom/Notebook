@@ -107,10 +107,10 @@
 \subsubsection{BFS-DFS}
 \subsubsection{Square-root tricks}
 \begin{itemize}
-    \item Periodic rebuilding: every $\sqrt(n)$, rebuild static structure.
+  \item Periodic rebuilding: every $\sqrt{n}$, rebuild static structure.
     \item Range queries: split array into segments, store something for each segment.
     \item Small and large: do something for small(with low degree) nodes and something else for large nodes.
-    \item If the sum of some parameters is small, then the number of different sized parameters is bounded by roughly $\sqrt(n)$.
+    \item If the sum of some parameters is small, then the number of different sized parameters is bounded by roughly $\sqrt{n}$.
 \end{itemize}
 \subsubsection{DP}
 \subsubsection{Flow}
@@ -131,13 +131,13 @@
 \section{Data Structures}
 \subsection{Fenwick Tree}
 \codep{fenwicktree.py}
-\codej{fenwicktree.java}
+\codec{fenwicktree.cpp}
 \subsection{Segment Tree}
 \codep{sgmtree.cpp}
-\subsection{Lazy Segment Tree}
-\codec{lazysgmtree.cpp}
-\subsection{Lazy incrementing Segment Tree}
-\codec{lazysgmtree2.cpp}
+\subsection{Lazy Setting Segment Tree}
+\codec{lazysetsgmtree.cpp}
+\subsection{Lazy Incrementing Segment Tree}
+\codec{lazyincsgmtree.cpp}
 \subsection{Union Find}
 \codep{unionfind.py}
 \subsection{Monotone Queue}
@@ -159,9 +159,11 @@
 \codep{maxflow2.py}
 \subsection{Min cost max flow}
 \codep{mincostmaxflow.py}
-\codej{mincostmaxflow.java}
+\codej{mincostmaxflow.cpp}
 \subsection{Topological sorting - for example finding DAG order}
 \codep{topsort.py}
+\subsection{2sat}
+\codec{2sat.cpp}
 \section{Dynamic Programming}
 \subsection{Longest increasing subsequence}
 \codep{lis.py}
@@ -202,6 +204,9 @@ Pick's theorem states that the area, $A$, of a polygon with lattice coordinates 
     \item 133469857
     \item 1519262429
     \item 17024073439
+    \item 3435975962563
+    \item 22732918586849
+    \item 22734054029887
     \item $10^9+7$
     \item $10^9+9$
     \item $13631489 = 2^{20}\cdot 13 + 1$
