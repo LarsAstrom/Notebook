@@ -6,10 +6,9 @@ class fwtree {
 public:
   vector<ll> tree;
   ll n;
-  fwtree(vector<ll> x) {
-    n=x.size();
-    tree = vector<ll>(n+1,0);
-    for(int i = 0; i < n; i++) update(i,x[i]);
+  fwtree(ll N) {
+    n=N;
+    tree.assign(n+1,0);
   }
   void update(ll ind, ll val) {
       ind++;
