@@ -2,7 +2,6 @@
 using namespace std;
 typedef long long ll;
 
-
 class sgmtree {
 public:
   vector<ll> vals;

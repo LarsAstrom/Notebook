@@ -2,7 +2,8 @@
 using namespace std;
 typedef long long ll;
 #define rep(i,a,b) for (ll i = a; i<ll(b); i++)
-//This is a lazy sgmtree, but updates doesnt inc, update sets all values in segment
+//This is a lazy sgmtree, but updates doesnt inc, 
+//update sets all values in segment
 class sgmtree {
 public:
   vector<ll> vals;
