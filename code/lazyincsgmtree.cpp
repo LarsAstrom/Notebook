@@ -2,7 +2,8 @@
 using namespace std;
 typedef long long ll;
 #define rep(i,a,b) for (ll i = a; i<ll(b); i++)
-//This is a lazy sgmtree, update query increments all values between L and R
+//This is a lazy sgmtree, update query increments 
+//all values between L and R
 class sgmtree {
 public:
   vector<ll> vals;

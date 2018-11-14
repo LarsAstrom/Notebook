@@ -66,9 +66,11 @@ int main(){
     pi = atan(1)*4;
     ll T, deg1, deg2; cin >> T >> deg1;
     vector<complex<double> > a1,a2;
-    for(int i = 0; i <= deg1; i++){double c; cin >> c; a1.push_back({c,0});}
+    for(int i = 0; i <= deg1; i++){double c; cin >> c; 
+        a1.push_back({c,0});}
     cin >> deg2;
-    for(int i = 0; i <= deg2; i++){double c; cin >> c; a2.push_back({c,0});}
+    for(int i = 0; i <= deg2; i++){double c; cin >> c; 
+        a2.push_back({c,0});}
     n = 2; ll counter = 1;
     while (n <= deg1 + deg2){n *= 2; counter++;}
     while ((ll) a1.size() < n) a1.push_back({0,0});
@@ -82,7 +84,8 @@ int main(){
 
     vector<complex<double> > out = ifft(c);
     vector<ll> outs;
-    for(ll i = 0; i <= deg1 + deg2; i++) outs.push_back(round(out[i].real()));
+    for(ll i = 0; i <= deg1 + deg2; i++) 
+        outs.push_back(round(out[i].real()));
 
     cout << deg1 + deg2 << endl;
     for(ll i = 0; i < (ll) outs.size(); i++) cout << outs[i] << " ";

@@ -18,7 +18,9 @@ product(a,2) == ['AA','AB','AC','AD','BA','BB','BC','BD',
 
 #If a specified output, o, should be outputed with x decimals:
 print '\%.xf' % o
+print '{0:.2f}'.format(o)
 #For example
 print '\%.4f' % 2.05
 print '\%.4f' % 3.1415926535
+print '{0:.2f}'.format(3.1415926535)
 #gives us 2.0500, 3.1416

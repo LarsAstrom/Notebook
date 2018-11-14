@@ -27,13 +27,9 @@ public:
         G_reverse[j].push_back(i^1);
         x.push_back(i); y.push_back(j);
     }
-    bool solve(){  
-      for (int i=0;i<x.size();i++){
-        if (!marked[x[i]]) dfsFirst(x[i]);
-        if (!marked[y[i]]) dfsFirst(y[i]);
-        if (!marked[x[i]^1]) dfsFirst(x[i]^1);
-        if (!marked[y[i]^1]) dfsFirst(y[i]^1);
-      }
+    bool solve(){
+      for(int i = 0; i < N; i++)
+          if(!marked[i]) dfsFirst(i);
       marked.assign(N, false);
       while(!stck.empty()){
         int v = stck.back();
@@ -43,10 +39,8 @@ public:
           dfsSecond(v);
         }
       }
-      for (int i=0;i<x.size();i++){
-        if (component[x[i]] == component[x[i]^1]) return false;
-        if (component[y[i]] == component[y[i]^1]) return false;
-      }
+      for(int i = 0; i < N; i+=2)
+          if(component[i] == component[i+1]) return false;
       return true;
     }
 private:
@@ -67,29 +61,3 @@ private:
         component[v] = counter;
     }
 };
-int main(){
-  int N,R,K;
-  cin >> N >> R >> K;
-  twosat solver(K);
-
-  vector<pii> lampor;
-  for (int i=0;i<K;i++){
-    int r,c;
-    cin >> r >> c;
-    lampor.push_back({r,c});
-  }
-  for (int i=0;i<K;i++){
-    for (int j=i+1;j<K;j++){
-        if (lampor[i].first == lampor[j].first && abs(lampor[i].second - lampor[j].second) <= 2*R){
-            solver.addClause(2*i,2*j);
-        }
-        else if (lampor[i].second == lampor[j].second && abs(lampor[i].first - lampor[j].first) <= 2*R){
-            solver.addClause(2*i+1,2*j+1);
-        }
-    }
-  }
-  if(solver.solve()) cout << 1 << endl;
-  else cout << 0 << endl;
-
-  return 0;
-}
