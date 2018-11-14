@@ -206,31 +206,69 @@ Pick's theorem states that the area, $A$, of a polygon with lattice coordinates 
     \item Directory with test cases.
 \end{itemize}
 \newpage
+\renewcommand{\labelitemi}{\textendash}
 \section{Methods and ideas}
-\subsection{When there is an obvious TLE solution}
-\subsubsection{In DP, drop one parameter and recover from others}
-\subsubsection{Use some sorted datastructure}
-\subsubsection{Is something bounded by the statement?}
-\subsubsection{In DP, use FFT to reduce one n to log n}
-\subsection{General standard ideas}
-\subsubsection{BFS-DFS}
-\subsubsection{Square-root tricks}
+\noindent
+Use some characteristics of the problem (i.e. bounds)
+\begin{itemize}
+  \item $N\leq10$: Exhaustive search $N!$
+  \item $N\leq20$: Exponential
+  \item $N\leq 10^4$: Quadratic
+  \item $N\leq 10^6$: Has to be NlogN
+\end{itemize}
+Greedy
+\begin{itemize}
+  \item Invariants
+  \item Scheduling
+\end{itemize}
+BFS/DFS\\
+DP\\
+Binary search
+\begin{itemize}
+  \item Over the answer
+  \item To find something in sorted structure
+\end{itemize}
+Flow
+\begin{itemize}
+  \item Min-cost-max-flow
+  \item Run the flow and look at min cut
+  \item Regular flow
+  \item Matching
+\end{itemize}
+View the problem as a graph\\
+Color the graph\\
+When there is an obvious TLE solution
+\begin{itemize}
+  \item Use some sorted data structure
+  \item In DP, drop one parameter and recover from others
+  \item Is something bounded by the statement?
+  \item In DP, use FFT to reduce one N to logN
+\end{itemize}
+Divide and conquer - find interesting points in NlogN\\
+Square-root tricks
 \begin{itemize}
   \item Periodic rebuilding: every $\sqrt{n}$, rebuild static structure.
-    \item Range queries: split array into segments, store something for each segment.
-    \item Small and large: do something for small(with low degree) nodes and something else for large nodes.
-    \item If the sum of some parameters is small, then the number of different sized parameters is bounded by roughly $\sqrt{n}$.
+  \item Range queries: split array into segments, store something for each segment.
+  \item Small and large: do something for small(with low degree) nodes and something else for large nodes.
+  \item If the sum of some parameters is small, then the number of different sized parameters is bounded by roughly $\sqrt{n}$.
 \end{itemize}
-\subsubsection{DP}
-\subsubsection{Flow}
+Hall's marriage theorem\\
+Combinatorics / Number theory / Maths
 \begin{itemize}
-    \item Regular flow
-    \item Min cost
-    \item Run the flow and then look at min cut
+  \item Inclusion/Exclusion
+  \item Fermat's little theorem / Euler's theorem
+  \item NIM
 \end{itemize}
-\subsubsection{View the problem as a graph}
-\subsubsection{Color the graph}
-\subsubsection{Use some characteristic of the problem (i.e. bounds)}
+Randomization
+\begin{itemize}
+  \item Finding if 3 points are on the same line
+  \item Checking matrix equality by randomizing vector and multiply
+\end{itemize}
+Geometry
+\begin{itemize}
+  \item Cross product - to check order of points / area
+  \item Scalar product
+\end{itemize}
 
 \end{large}
 \end{multicols*}
