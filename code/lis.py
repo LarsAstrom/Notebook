@@ -1,7 +1,7 @@
 '''
 Returns the longest increasing of list X.
 
-Time Complexity: O(N), N = len(X)
+Time Complexity: O(N logN), N = len(X)
 Space Complexity: O(N)
 '''
 
