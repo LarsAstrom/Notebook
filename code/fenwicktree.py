@@ -11,12 +11,13 @@ def fenwicktree(arr):
         updatebit(fwtree,len(arr),i,arr[i])
     return fwtree
 
-def updatebit(fwtree,n,i,val):
+def updatebit(fwtree,i,val):
     i += 1
-    while i <= n:
+    while i < len(fwtree):
         fwtree[i] += val
         i += i&(-i)
 
+# get sum of [0,i] inclusive
 def getsum(fwtree,i):
     s = 0
     i += 1
