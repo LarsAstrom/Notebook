@@ -25,8 +25,8 @@ public:
   }
 
   void addEdge(ll u, ll v, ll C){
-    Edge a{v, 0, C, adj[v].size()};// Forward edge
-    Edge b{u, 0, 0, adj[u].size()};// Back edge
+    Edge a{v, 0, C, (int)adj[v].size()};// Forward edge
+    Edge b{u, 0, 0, (int)adj[u].size()};// Back edge
     adj[u].push_back(a);
     adj[v].push_back(b); // reverse edge
   }
@@ -57,7 +57,7 @@ public:
     if (u == t)
         return flow;
     // Traverse all adjacent edges one -by - one.
-    for (  ; start[u] < adj[u].size(); start[u]++){
+    for (  ; start[u] < (int)adj[u].size(); start[u]++){
       Edge &e = adj[u][start[u]];
       if (level[e.v] == level[u]+1 && e.flow < e.C){
         // find minimum flow from u to t

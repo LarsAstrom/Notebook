@@ -13,33 +13,25 @@ Time-Complexity: O(m+n), n is the number of nodes.
 Space-Complexity: O(m+n)
 '''
 def topsort(adj):
-    n = len(adj)
-    par = [0]*n
+    N = len(adj)
+    par = [0]*N
     for l in adj:
         for node in l:
             par[node] += 1
-    count = 0
-    sorting = [-1]*n
+    sorting = []
     queue = deque([])
-    for i in range(n):
+    for i in range(N):
         if par[i] == 0:
-            sorting[i] = count
-            count += 1
+            sorting.append(i)
             queue.append(i)
 
-    is_unique_sorting = True
     while queue:
-        if len(queue) > 1: is_unique_sorting = False
         cur = queue.popleft()
         for child in adj[cur]:
             par[child] -= 1
             if par[child] == 0:
                 queue.append(child)
-                sorting[child] = count
-                count += 1
+                sorting.append(child)
 
-    if -1 in sorting: #Some element has not been given a number.
-        return False
-    if is_unique_sorting: 
-        return sorting
-    return 'not unique'
+    if len(sorting) < N: return None
+    return sorting
