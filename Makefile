@@ -16,4 +16,3 @@ clean: # should make a function for all of these.
 	[ ! -e a.out ] || rm a.out
 	[ ! -e *.class ] || rm *.class
 	[ ! -e _minted-main ] || rm -r _minted-main
-	[ ! -e main.pdf ] || rm main.pdf
