@@ -13,7 +13,7 @@ def djikstra(adj,S):
     N = len(adj)
     d = [INF]*N
     vis = [False]*N
-    d[S],vis[S] = 0,True
+    d[S] = 0
     pq = [] 
     heappush(pq, (d[S],S))
     while pq:
