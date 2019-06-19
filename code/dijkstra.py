@@ -1,5 +1,5 @@
 '''
-Implementation of djikstras algorithm. Finds the shortest path from a 
+Implementation of dijkstras algorithm. Finds the shortest path from a 
 source, to all other nodes (non-negative weights).
 adj is a list of adjacency lists and s the source node.
 
@@ -9,7 +9,7 @@ Space Complexity: O(M + N)
 from heapq import heappush, heappop
 
 INF = 10**12
-def djikstra(adj,S):
+def dijkstra(adj,S):
     N = len(adj)
     d = [INF]*N
     vis = [False]*N
