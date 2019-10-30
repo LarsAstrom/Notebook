@@ -17,12 +17,8 @@ def gaussianelimination(A,b):
             if abs(A[i][k]) > abs(A[imax][k]): imax = i
         if A[imax][k] == 0: k += 1
         else:
-            temp = A[h]
-            A[h] = A[imax]
-            A[imax] = temp
-            temp2 = b[h]
-            b[h] = b[imax]
-            b[imax] = temp2
+            A[h],A[imax] = A[imax],A[h]
+            b[h],b[imax] = b[imax],b[h]
             for i in range(h+1,n):
                 f = A[i][k] / A[h][k]
                 A[i][k] = 0
@@ -31,10 +27,10 @@ def gaussianelimination(A,b):
                 b[i] -= b[h]*f
             h += 1
             k += 1
-    x = [-1]*n
     if A[n-1][n-1] == 0 and b[n-1] == 0: return 'multiple'
     elif A[n-1][n-1] == 0 and b[n-1] != 0: return 'inconsistent'
-    else: x[n-1] = b[n-1]/A[n-1][n-1]
+    x = [-1]*n
+    x[n-1] = b[n-1]/A[n-1][n-1]
     for i in range(n-2,-1,-1):
         s = 0
         for j in range(i+1,n): s += A[i][j]*x[j]

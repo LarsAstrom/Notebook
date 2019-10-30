@@ -60,7 +60,7 @@ def seg_seg_intersect(seg1,seg2):
 def seg_point_project(seg, p):
     line = two_points_to_line(*seg)
     p2 = line_point_project(line,p)
-    if weakPointInsideSegment(p2,seg):
+    if weak_point_on_segment(seg,p2):
         return p2
     else:
         if dist(p,(seg[0],seg[1])) < dist(p,(seg[2],seg[3])):
